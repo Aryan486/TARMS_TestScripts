@@ -1,12 +1,14 @@
 package Faculty;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Login 
+public class facultyDecision 
 {
 	public static void main(String[] args) throws InterruptedException 
 	{
@@ -35,7 +37,13 @@ public class Login
 			driver.switchTo().alert().accept();
 		}
 		
-		Thread.sleep(7000);
+		Thread.sleep(5000);
+		
+		List<WebElement> decision=driver.findElements(By.xpath("//input[@type='submit']"));
+		int index=1;    //index=1 for reject and index=0 for accept
+		decision.get(index).click();
+		
+		Thread.sleep(5000);
 		
 		driver.close();
 		

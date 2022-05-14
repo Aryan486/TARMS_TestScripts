@@ -6,12 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Login 
+public class changePassword 
 {
 	public static void main(String[] args) throws InterruptedException 
 	{
 		System.setProperty("webdriver.chrome.driver","D:\\Program Files\\Selenium\\chromedriver.exe");
-		ChromeDriver driver=new ChromeDriver();
+		WebDriver driver=new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("http://localhost:3000");
 		
@@ -23,20 +23,41 @@ public class Login
 		WebElement password=driver.findElement(By.id("Pass"));
 		password.sendKeys("Goodday1!");
 		
-		Thread.sleep(4000);
+		Thread.sleep(3000);
 		
 		WebElement submit=driver.findElement(By.id("lin"));
 		submit.click();
 		
-		boolean res=checkAlerts(driver);
-		if(res==true)
+		Thread.sleep(5000);
+		
+		WebElement PI=driver.findElement(By.xpath("//a[contains(text(),'Change')]"));
+		PI.click();
+		
+		Thread.sleep(3000);
+		
+		WebElement oPass=driver.findElement(By.id("oldPass"));
+		oPass.clear();
+		oPass.sendKeys("Goodday1!");
+		WebElement nPass=driver.findElement(By.id("newPass"));
+		nPass.sendKeys("HaveaNiceDay1@");
+		WebElement cnPass=driver.findElement(By.id("SancNewPass"));
+		cnPass.sendKeys("HaveaNiceDay1@");
+		
+		Thread.sleep(2000);
+		
+		//WebElement reset=driver.findElement(By.xpath("//input[@type='reset']"));
+		//reset.click();
+		WebElement submitPass=driver.findElement(By.xpath("//input[@type='submit']"));
+		submitPass.click();
+		
+		boolean result=checkAlerts(driver);
+		if(result==true)
 		{
 			Thread.sleep(2000);
 			driver.switchTo().alert().accept();
 		}
 		
-		Thread.sleep(7000);
-		
+		Thread.sleep(5000);
 		driver.close();
 		
 	}
@@ -51,4 +72,5 @@ public class Login
 			return false;
 		}
 	}
+
 }
